@@ -35,7 +35,6 @@
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",

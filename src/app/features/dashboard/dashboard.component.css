@@ -1,0 +1,224 @@
+.dashboard {
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+/* Navbar */
+.navbar {
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.brand-icon {
+  font-size: 28px;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-name {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.user-role {
+  background: #e8f0fe;
+  color: #1967d2;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.user-role.admin {
+  background: #fee8e8;
+  color: #dc3545;
+}
+
+.btn-logout {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-logout:hover {
+  background: #f0f0f0;
+  color: #dc3545;
+}
+
+/* Main Content */
+.main-content {
+  padding: 32px 0;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Welcome Banner */
+.welcome-banner {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px;
+  padding: 32px;
+  color: white;
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.welcome-banner h1 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.welcome-banner p {
+  opacity: 0.9;
+}
+
+.banner-stats {
+  display: flex;
+  gap: 32px;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-value {
+  display: block;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.stat-label {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+/* Cards Grid */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 28px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.card-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.card h3 {
+  font-size: 20px;
+  color: #2c3e50;
+  margin-bottom: 12px;
+}
+
+.card p {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.card-link {
+  color: #667eea;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* Ajustes para iconos */
+.fas,
+.far {
+  margin-right: 6px;
+}
+
+/* Iconos en botones */
+.btn i,
+button i {
+  margin-right: 6px;
+}
+
+/* Iconos en labels */
+label i {
+  margin-right: 6px;
+  color: #667eea;
+  width: 18px;
+}
+
+/* Iconos en tarjetas */
+.card-icon i {
+  font-size: 48px;
+  color: #667eea;
+}
+
+/* Iconos en header */
+.header-icon {
+  font-size: 24px;
+  margin-right: 12px;
+}
+
+/* Iconos en resultados */
+.results-count i {
+  margin-right: 4px;
+}
+
+/* Iconos en tablas */
+.table th i {
+  margin-right: 6px;
+  font-size: 12px;
+}

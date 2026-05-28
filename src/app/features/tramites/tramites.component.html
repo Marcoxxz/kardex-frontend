@@ -1,0 +1,144 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="header-content">
+      <h1><i class="fas fa-file-alt"></i> Gestión de Trámites</h1>
+      <p>Solicitudes de certificados y documentos académicos</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="two-columns">
+      <!-- Crear trámite -->
+      <div class="form-card">
+        <div class="card-header">
+          <i class="fas fa-plus-circle header-icon"></i>
+          <h3>Nuevo Trámite</h3>
+        </div>
+
+        <div class="card-body">
+          <div class="form-group">
+            <label for="descripcion"><i class="fas fa-heading"></i> Título</label>
+            <input
+              type="text"
+              id="descripcion"
+              class="form-control"
+              [(ngModel)]="nuevoTramite.descripcion"
+              placeholder="Ej: Solicitud de certificado de notas"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="codigo"
+              ><i class="fas fa-shield-alt"></i> Código de Seguridad</label
+            >
+            <input
+              type="text"
+              id="codigo"
+              class="form-control"
+              [(ngModel)]="nuevoTramite.codigoSeguridad"
+              placeholder="Ingrese código de seguridad"
+            />
+            <small class="form-help"
+              ><i class="fas fa-info-circle"></i> Este código será verificado
+              durante la auditoría</small
+            >
+          </div>
+
+          <button
+            class="btn-submit"
+            (click)="crearTramite()"
+            [disabled]="loading"
+          >
+            <i
+              class="fas"
+              [class.fa-save]="!loading"
+              [class.fa-spinner]="loading"
+              [class.fa-spin]="loading"
+            ></i>
+            {{ loading ? "Creando..." : "Crear Trámite" }}
+          </button>
+
+          <div *ngIf="tramiteCreado" class="success-message">
+            <i class="fas fa-check-circle"></i> Trámite creado exitosamente
+          </div>
+        </div>
+      </div>
+
+      <!-- Auditar trámite -->
+      <div class="form-card">
+        <div class="card-header">
+          <i class="fas fa-search header-icon"></i>
+          <h3>Auditar Trámite</h3>
+        </div>
+
+        <div class="card-body">
+          <div class="form-group">
+            <label for="tramiteId"
+              ><i class="fas fa-hashtag"></i> ID del Trámite</label
+            >
+            <div class="input-wrapper">
+              <input
+                type="number"
+                id="tramiteId"
+                class="form-control"
+                [(ngModel)]="tramiteId"
+                placeholder="Ingrese ID"
+              />
+              <button
+                class="btn-audit"
+                (click)="auditarTramite()"
+                [disabled]="loading"
+              >
+                <i
+                  class="fas"
+                  [class.fa-search]="!loading"
+                  [class.fa-spinner]="loading"
+                  [class.fa-spin]="loading"
+                ></i>
+                {{ loading ? "Auditando..." : "Auditar" }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resultados de auditoría -->
+    <div class="results-section" *ngIf="resultadosAuditoria.length > 0">
+      <div class="result-card">
+        <div class="result-header">
+          <div class="result-title">
+            <i class="fas fa-chart-bar title-icon"></i>
+            <h3>Resultados de la Auditoría</h3>
+          </div>
+          <span class="result-badge"
+            ><i class="fas fa-database"></i>
+            {{ resultadosAuditoria.length }} estudiantes</span
+          >
+        </div>
+        <div class="card-body">
+          <table class="audit-table">
+            <thead>
+              <tr>
+                <th><i class="fas fa-qrcode"></i> RU</th>
+                <th><i class="fas fa-id-card"></i> CI</th>
+                <th><i class="fas fa-user"></i> Nombres</th>
+                <th><i class="fas fa-user-friends"></i> Apellidos</th>
+                <th><i class="fas fa-graduation-cap"></i> Carrera</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let est of resultadosAuditoria">
+                <td class="code">{{ est.ru }}</td>
+                <td>{{ est.ci }}</td>
+                <td>{{ est.nombres }}</td>
+                <td>{{ est.apellidos }}</td>
+                <td>{{ est.carrera }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

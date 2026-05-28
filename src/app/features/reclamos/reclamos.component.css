@@ -1,0 +1,550 @@
+/* ============================================
+   RECLAMOS COMPONENT CSS
+   Sistema de Gestión Académica - Estilo Profesional
+   ============================================ */
+
+/* Contenedor principal */
+.page-container {
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.page-header {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: white;
+  padding: 48px 0;
+  margin-bottom: -32px;
+}
+
+.header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.header-content h1 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.header-content p {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+/* ============================================
+   CONTAINER
+   ============================================ */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ============================================
+   TWO COLUMNS LAYOUT
+   ============================================ */
+.two-columns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  padding: 32px 0 64px;
+}
+
+/* ============================================
+   FORM CARD
+   ============================================ */
+.form-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.card-header {
+  background: #f8f9fa;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-icon {
+  font-size: 24px;
+}
+
+.card-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+  flex: 1;
+}
+
+.badge {
+  background: #e8f0fe;
+  color: #1967d2;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.card-body {
+  padding: 24px;
+}
+
+/* Formulario */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #2a5298;
+  box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+}
+
+textarea.form-control {
+  resize: vertical;
+  font-family: inherit;
+}
+
+/* Botón de envío */
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+}
+
+.btn-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 60, 114, 0.3);
+}
+
+.btn-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   LIST CARD (Admin View)
+   ============================================ */
+.list-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  max-height: 600px;
+}
+
+.list-card .card-header {
+  background: #f8f9fa;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.reclamos-list {
+  overflow-y: auto;
+  padding: 0;
+  max-height: 500px;
+}
+
+/* Lista vacía */
+.empty-list {
+  text-align: center;
+  padding: 48px 24px;
+  color: #999;
+}
+
+.empty-list p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Elemento de reclamo */
+.reclamo-item {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 20px 24px;
+  transition: background 0.2s ease;
+}
+
+.reclamo-item:hover {
+  background: #fafbfc;
+}
+
+.reclamo-item:last-child {
+  border-bottom: none;
+}
+
+/* Cabecera del reclamo */
+.reclamo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.reclamo-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.reclamo-info strong {
+  color: #2c3e50;
+  font-size: 13px;
+  font-family: monospace;
+  background: #f0f0f0;
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  width: fit-content;
+}
+
+.asunto {
+  color: #333;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.date {
+  color: #999;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* Detalle del reclamo - VULNERABLE a XSS */
+.reclamo-detalle {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.5;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  background: #f9f9f9;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+/* Estilos para contenido HTML inyectado (XSS) */
+.reclamo-detalle img {
+  max-width: 100%;
+  height: auto;
+}
+
+.reclamo-detalle script {
+  display: none;
+}
+
+.reclamo-detalle iframe {
+  max-width: 100%;
+}
+
+/* ============================================
+   NOTIFICACIONES (Toast)
+   ============================================ */
+.toast-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 1000;
+  animation: slideInRight 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.toast-success {
+  background: #28a745;
+}
+
+.toast-error {
+  background: #dc3545;
+}
+
+.toast-warning {
+  background: #ffc107;
+  color: #333;
+}
+
+/* ============================================
+   ANIMACIONES
+   ============================================ */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 1024px) {
+  .two-columns {
+    gap: 24px;
+  }
+
+  .header-content h1 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .two-columns {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 24px 0 48px;
+  }
+
+  .page-header {
+    padding: 32px 0;
+  }
+
+  .header-content h1 {
+    font-size: 24px;
+  }
+
+  .header-content p {
+    font-size: 14px;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .card-header {
+    padding: 16px 20px;
+  }
+
+  .card-header h3 {
+    font-size: 16px;
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+
+  .reclamo-item {
+    padding: 16px 20px;
+  }
+
+  .reclamo-header {
+    flex-direction: column;
+  }
+
+  .date {
+    font-size: 11px;
+  }
+
+  .asunto {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-body {
+    padding: 16px;
+  }
+
+  .form-control {
+    padding: 10px 12px;
+  }
+
+  .btn-submit {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .reclamo-detalle {
+    font-size: 13px;
+    padding: 10px;
+  }
+}
+
+/* ============================================
+   SCROLLBAR STYLES (para la lista de reclamos)
+   ============================================ */
+.reclamos-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.reclamos-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.reclamos-list::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.reclamos-list::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.text-center {
+  text-align: center;
+}
+
+.mt-2 {
+  margin-top: 8px;
+}
+
+.mt-3 {
+  margin-top: 12px;
+}
+
+.mb-2 {
+  margin-bottom: 8px;
+}
+
+.mb-3 {
+  margin-bottom: 12px;
+}
+
+/* ============================================
+   ESTADO DE CARGA
+   ============================================ */
+.loading-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.6s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   MENSAJES DE VALIDACIÓN
+   ============================================ */
+.error-message {
+  color: #dc3545;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.success-message {
+  color: #28a745;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* ============================================
+   CURSOR Y INTERACCIONES
+   ============================================ */
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* ============================================
+   SEPARADORES
+   ============================================ */
+.divider {
+  height: 1px;
+  background: #e0e0e0;
+  margin: 20px 0;
+}
+
+/* Ajustes para iconos */
+.fas,
+.far {
+  margin-right: 6px;
+}
+
+/* Iconos en botones */
+.btn i,
+button i {
+  margin-right: 6px;
+}
+
+/* Iconos en labels */
+label i {
+  margin-right: 6px;
+  color: #667eea;
+  width: 18px;
+}
+
+/* Iconos en tarjetas */
+.card-icon i {
+  font-size: 48px;
+  color: #667eea;
+}
+
+/* Iconos en header */
+.header-icon {
+  font-size: 24px;
+  margin-right: 12px;
+}
+
+/* Iconos en resultados */
+.results-count i {
+  margin-right: 4px;
+}
+
+/* Iconos en tablas */
+.table th i {
+  margin-right: 6px;
+  font-size: 12px;
+}

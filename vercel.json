@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "buildCommand": "ng build --configuration=production --optimization=true",
+  "outputDirectory": "dist/kardex-frontend",
+  "installCommand": "npm install",
+  "framework": "angular",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}

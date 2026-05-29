@@ -1,8 +1,8 @@
 {
   "version": 2,
   "framework": "angular",
-  "buildCommand": "ng build",
-  "outputDirectory": "dist/kardex-frontend",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/kardex-frontend/browser",
   "rewrites": [
     {
       "source": "/(.*)",

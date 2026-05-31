@@ -5,6 +5,7 @@ import { EstudiantesComponent } from './features/estudiantes/estudiantes.compone
 import { NotasComponent } from './features/notas/notas.component';
 import { ReclamosComponent } from './features/reclamos/reclamos.component';
 import { TramitesComponent } from './features/tramites/tramites.component';
+import { MateriasComponent } from './features/materias/materias.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -14,5 +15,6 @@ export const routes: Routes = [
   { path: 'notas', component: NotasComponent },
   { path: 'reclamos', component: ReclamosComponent },
   { path: 'tramites', component: TramitesComponent },
+  { path: 'materias', component: MateriasComponent },
   { path: '**', redirectTo: '/login' },
 ];

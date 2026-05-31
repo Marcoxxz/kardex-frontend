@@ -16,7 +16,7 @@ export class TramitesComponent {
   nuevoTramite: Tramite = {
     descripcion: '',
     codigoSeguridad: '',
-    estado: 'PENDIENTE',
+    ru: '',
   };
   tramiteId: number | null = null;
   resultadosAuditoria: Estudiante[] = [];
@@ -34,7 +34,7 @@ export class TramitesComponent {
         this.nuevoTramite = {
           descripcion: '',
           codigoSeguridad: '',
-          estado: 'PENDIENTE',
+          ru: '',
         };
         this.loading = false;
       },

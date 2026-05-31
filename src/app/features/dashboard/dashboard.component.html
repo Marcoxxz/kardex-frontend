@@ -44,15 +44,15 @@
         </div>
         <div class="banner-stats">
           <div class="stat">
-            <span class="stat-value">4</span>
+            <span class="stat-value">{{ estadisticas.materiasActivas }}</span>
             <span class="stat-label"
-              ><i class="fas fa-book"></i> Materias Activas</span
+              ><i class="fas fa-book"></i> Materias Cursadas</span
             >
           </div>
           <div class="stat">
-            <span class="stat-value">85.5</span>
+            <span class="stat-value">{{ estadisticas.promedioGeneral }}</span>
             <span class="stat-label"
-              ><i class="fas fa-chart-line"></i> Promedio General</span
+              ><i class="fas fa-chart-line"></i> Promedio Ponderado</span
             >
           </div>
         </div>
@@ -79,6 +79,17 @@
           <p>Consulta de calificaciones y rendimiento académico</p>
           <span class="card-link"
             >Ver historial <i class="fas fa-arrow-right"></i
+          ></span>
+        </div>
+
+        <div class="card" (click)="navigateTo('materias')">
+          <div class="card-icon">
+            <i class="fas fa-book"></i>
+          </div>
+          <h3>Materias</h3>
+          <p>Gestión del catálogo de materias académicas</p>
+          <span class="card-link"
+            >Administrar <i class="fas fa-arrow-right"></i
           ></span>
         </div>
 

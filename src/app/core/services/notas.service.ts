@@ -12,8 +12,28 @@ export class NotasService {
 
   constructor(private http: HttpClient) {}
 
-  // Vulnerable a IDOR
+  // Ya lo tienes - Vulnerable a IDOR
   consultarNotaPorId(id: number): Observable<Nota> {
     return this.http.get<Nota>(`${this.apiUrl}/consultar/${id}`);
+  }
+
+  // 🔥 NUEVO - Obtener todas las notas de un estudiante
+  getNotasByEstudiante(ru: string): Observable<Nota[]> {
+    return this.http.get<Nota[]>(`${this.apiUrl}/estudiante/${ru}`);
+  }
+
+  // 🔥 NUEVO - Obtener kardex completo
+  getKardexCompleto(ru: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/kardex/${ru}`);
+  }
+
+  // 🔥 NUEVO - Registrar nueva nota
+  registrarNota(nota: Nota): Observable<Nota> {
+    return this.http.post<Nota>(`${this.apiUrl}/registrar`, nota);
+  }
+
+  // 🔥 NUEVO - Actualizar nota
+  actualizarNota(id: number, nota: Nota): Observable<Nota> {
+    return this.http.put<Nota>(`${this.apiUrl}/actualizar/${id}`, nota);
   }
 }

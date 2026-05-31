@@ -1,0 +1,289 @@
+<!-- src/app/pages/materias/materias.component.html -->
+<div class="page-container">
+  <!-- Header -->
+  <div class="page-header">
+    <div class="header-content">
+      <h1><i class="fas fa-book"></i> Gestión de Materias</h1>
+      <p>Administración del catálogo de materias académicas</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Botón Crear -->
+    <div class="action-bar">
+      <button type="button" class="btn-create" (click)="abrirFormularioCrear()">
+        <i class="fas fa-plus"></i> Nueva Materia
+      </button>
+    </div>
+
+    <!-- Formulario de Materia -->
+    <div class="form-card" *ngIf="mostrarFormulario">
+      <div class="card-header">
+        <i class="fas fa-edit header-icon"></i>
+        <h3>{{ editando ? "Editar Materia" : "Nueva Materia" }}</h3>
+        <button
+          type="button"
+          class="btn-close"
+          (click)="mostrarFormulario = false"
+          title="Cerrar formulario"
+          aria-label="Cerrar formulario"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div class="card-body">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="sigla"><i class="fas fa-code"></i> Sigla *</label>
+            <input
+              type="text"
+              id="sigla"
+              [(ngModel)]="nuevaMateria.sigla"
+              placeholder="Ej: INF-101"
+              title="Ingrese la sigla de la materia"
+              [disabled]="editando"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="nombre"><i class="fas fa-heading"></i> Nombre *</label>
+            <input
+              type="text"
+              id="nombre"
+              [(ngModel)]="nuevaMateria.nombre"
+              placeholder="Ej: Programación I"
+              title="Ingrese el nombre de la materia"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="creditos"
+              ><i class="fas fa-calculator"></i> Créditos</label
+            >
+            <input
+              type="number"
+              id="creditos"
+              [(ngModel)]="nuevaMateria.creditos"
+              min="1"
+              max="10"
+              placeholder="Ej: 4"
+              title="Ingrese la cantidad de créditos"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="carrera"
+              ><i class="fas fa-graduation-cap"></i> Carrera *</label
+            >
+            <select
+              id="carrera"
+              [(ngModel)]="nuevaMateria.carrera"
+              title="Seleccione la carrera"
+            >
+              <option value="">Seleccione...</option>
+              <option *ngFor="let c of carreras" [value]="c">{{ c }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="semestre"
+              ><i class="fas fa-layer-group"></i> Semestre</label
+            >
+            <input
+              type="number"
+              id="semestre"
+              [(ngModel)]="nuevaMateria.semestre"
+              min="1"
+              max="10"
+              placeholder="Ej: 1"
+              title="Ingrese el semestre"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="requisito"
+              ><i class="fas fa-link"></i> Prerrequisito</label
+            >
+            <input
+              type="text"
+              id="requisito"
+              [(ngModel)]="nuevaMateria.requisito"
+              placeholder="Sigla de materia requisito"
+              title="Ingrese la sigla del prerrequisito"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="area"><i class="fas fa-tags"></i> Área</label>
+            <input
+              type="text"
+              id="area"
+              [(ngModel)]="nuevaMateria.area"
+              placeholder="Ej: Programación, Matemáticas"
+              title="Ingrese el área temática"
+            />
+          </div>
+
+          <div class="form-group checkbox">
+            <label for="activo">
+              <input
+                type="checkbox"
+                id="activo"
+                [(ngModel)]="nuevaMateria.activo"
+                title="Marca la materia como activa"
+              />
+              <i class="fas fa-check-circle"></i> Activa
+            </label>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button
+            type="button"
+            class="btn-cancel"
+            (click)="mostrarFormulario = false"
+          >
+            Cancelar
+          </button>
+          <button
+            type="button"
+            class="btn-save"
+            (click)="guardarMateria()"
+            [disabled]="loading"
+          >
+            <i
+              class="fas"
+              [class.fa-save]="!loading"
+              [class.fa-spinner]="loading"
+              [class.fa-spin]="loading"
+            ></i>
+            {{ loading ? "Guardando..." : editando ? "Actualizar" : "Crear" }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filtros -->
+    <div class="filters-card">
+      <div class="filters-row">
+        <div class="filter-group">
+          <i class="fas fa-search"></i>
+          <input
+            type="text"
+            [(ngModel)]="searchTerm"
+            placeholder="Buscar por nombre o sigla..."
+            (keyup.enter)="buscarMaterias()"
+          />
+          <button type="button" (click)="buscarMaterias()">Buscar</button>
+        </div>
+
+        <div class="filter-group">
+          <i class="fas fa-graduation-cap"></i>
+          <select
+            [(ngModel)]="filtroCarrera"
+            (change)="filtrarPorCarrera()"
+            title="Carrera"
+          >
+            <option value="">Todas las carreras</option>
+            <option *ngFor="let c of carreras" [value]="c">{{ c }}</option>
+          </select>
+        </div>
+
+        <button
+          type="button"
+          class="btn-clear"
+          (click)="limpiarFiltros()"
+          title="Limpiar filtros"
+        >
+          <i class="fas fa-eraser"></i> Limpiar
+        </button>
+      </div>
+    </div>
+
+    <!-- Tabla de Materias -->
+    <div class="table-container">
+      <div *ngIf="loading" class="loading-overlay">
+        <i class="fas fa-spinner fa-spin"></i> Cargando...
+      </div>
+
+      <table class="materias-table">
+        <thead>
+          <tr>
+            <th>Sigla</th>
+            <th>Nombre</th>
+            <th>Créditos</th>
+            <th>Carrera</th>
+            <th>Semestre</th>
+            <th>Prerrequisito</th>
+            <th>Área</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let materia of materias">
+            <td class="code">{{ materia.sigla }}</td>
+            <td>{{ materia.nombre }}</td>
+            <td class="center">{{ materia.creditos }}</td>
+            <td>{{ materia.carrera }}</td>
+            <td class="center">{{ materia.semestre || "-" }}</td>
+            <td>{{ materia.requisito || "-" }}</td>
+            <td>{{ materia.area || "-" }}</td>
+            <td class="center">
+              <span
+                class="status"
+                [class.active]="materia.activo"
+                [class.inactive]="!materia.activo"
+              >
+                {{ materia.activo ? "ACTIVA" : "INACTIVA" }}
+              </span>
+            </td>
+            <td class="actions">
+              <button
+                type="button"
+                class="btn-edit"
+                (click)="editarMateria(materia)"
+                title="Editar"
+                aria-label="Editar materia"
+              >
+                <i class="fas fa-edit"></i>
+              </button>
+              <button
+                type="button"
+                class="btn-delete"
+                (click)="eliminarMateria(materia.sigla)"
+                title="Eliminar"
+                aria-label="Eliminar materia"
+              >
+                <i class="fas fa-trash"></i>
+              </button>
+              <button
+                type="button"
+                class="btn-toggle"
+                (click)="toggleActivarMateria(materia)"
+                [title]="materia.activo ? 'Desactivar' : 'Activar'"
+              >
+                <i
+                  class="fas"
+                  [class.fa-toggle-on]="materia.activo"
+                  [class.fa-toggle-off]="!materia.activo"
+                  aria-hidden="true"
+                ></i>
+
+                <span class="sr-only">
+                  {{
+                    materia.activo ? "Desactivar materia" : "Activar materia"
+                  }}
+                </span>
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="materias.length === 0 && !loading">
+            <td colspan="9" class="empty-row">No hay materias registradas</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

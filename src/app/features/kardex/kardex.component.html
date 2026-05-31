@@ -1,0 +1,73 @@
+<!-- Estado de carga -->
+<div *ngIf="loading" class="loading-container">
+  <i class="fas fa-spinner fa-spin"></i>
+  <p>Cargando kardex...</p>
+</div>
+
+<!-- Estado de error -->
+<div *ngIf="errorMessage" class="error-container">
+  <i class="fas fa-exclamation-triangle"></i>
+  <p>{{ errorMessage }}</p>
+</div>
+
+<!-- Contenido principal -->
+<div *ngIf="!loading && !errorMessage && kardexData" class="container">
+  <h2>Kardex Académico</h2>
+  <h3>Estudiante: {{ kardexData.nombreEstudiante }}</h3>
+  <h4>RU: {{ kardexData.ru }}</h4>
+
+  <div class="resumen">
+    <h3>Resumen Académico</h3>
+    <p>
+      <strong>Total Créditos:</strong> {{ kardexData.resumen.totalCreditos }}
+    </p>
+    <p>
+      <strong>Promedio Ponderado:</strong>
+      {{ kardexData.resumen.promedioPonderado }}
+    </p>
+    <p>
+      <strong>Materias Aprobadas:</strong>
+      {{ kardexData.resumen.materiasAprobadas }}
+    </p>
+    <p>
+      <strong>Materias Reprobadas:</strong>
+      {{ kardexData.resumen.materiasReprobadas }}
+    </p>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Sigla</th>
+        <th>Materia</th>
+        <th>Créditos</th>
+        <th>Nota</th>
+        <th>Gestión</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let materia of kardexData.materias">
+        <td>{{ materia.siglaMateria }}</td>
+        <td>{{ materia.nombreMateria }}</td>
+        <td>{{ materia.creditos }}</td>
+        <td>{{ materia.notaFinal }}</td>
+        <td>{{ materia.gestion }}</td>
+        <td>
+          <span
+            [class.aprobado]="materia.notaFinal >= 51"
+            [class.reprobado]="materia.notaFinal < 51"
+          >
+            {{ materia.notaFinal >= 51 ? "APROBADO" : "REPROBADO" }}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Sin datos -->
+<div *ngIf="!loading && !errorMessage && !kardexData" class="empty-container">
+  <i class="fas fa-folder-open"></i>
+  <p>No hay datos de kardex disponibles</p>
+</div>

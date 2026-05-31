@@ -1,0 +1,97 @@
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.loading-container,
+.error-container,
+.empty-container {
+  text-align: center;
+  padding: 50px;
+  color: #666;
+}
+
+.loading-container i,
+.error-container i,
+.empty-container i {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.error-container {
+  color: #dc3545;
+}
+
+.resumen {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #dee2e6;
+}
+
+.resumen h3 {
+  margin-top: 0;
+  color: #2c3e50;
+}
+
+.resumen p {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.table th,
+.table td {
+  border: 1px solid #dee2e6;
+  padding: 12px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #4caf50;
+  color: white;
+  font-weight: 600;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.aprobado {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.reprobado {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  .table th,
+  .table td {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .resumen p {
+    font-size: 14px;
+  }
+}

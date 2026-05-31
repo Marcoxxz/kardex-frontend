@@ -1,8 +1,9 @@
 export interface Nota {
   id: number;
   ru: string;
-  siglaMateria: string; // ← Cambiado: sin guión bajo
-  nombreMateria: string; // ← Cambiado: sin guión bajo
-  notaFinal: number; // ← Cambiado: sin guión bajo
+  siglaMateria: string;
+  nombreMateria: string;
+  notaFinal: number;
   gestion: string;
+  creditos: number; // ← AGREGAR ESTO
 }

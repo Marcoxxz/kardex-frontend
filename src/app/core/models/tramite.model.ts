@@ -1,6 +1,7 @@
 export interface Tramite {
   id?: number;
-  descripcion: string;
+  ru: string; // ← Falta este campo
   codigoSeguridad: string;
-  estado: string;
+  descripcion: string;
+  // estado NO existe en backend
 }

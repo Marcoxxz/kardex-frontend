@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 
 @Component({
@@ -18,6 +18,7 @@ export class LoginComponent {
   lastPayload: string = '';
   errorMessage: string = '';
   loading: boolean = false;
+  showPassword: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -34,7 +35,6 @@ export class LoginComponent {
       .login({ username: this.username, password: this.password })
       .subscribe({
         next: (user) => {
-          this.showToast(`✅ ¡Bienvenido ${user.nombre_real}!`, 'success');
           localStorage.setItem('user', JSON.stringify(user));
           this.router.navigate(['/dashboard']);
           this.loading = false;

@@ -50,23 +50,34 @@ export class ReclamosComponent implements OnInit {
     });
   }
 
-  enviarReclamo() {
-    this.loading = true;
-    this.reclamosService.enviarReclamo(this.nuevoReclamo).subscribe({
-      next: () => {
-        this.showNotification('Reclamo enviado exitosamente', 'success');
-        this.nuevoReclamo = { ru: '', asunto: '', detalle: '' };
-        if (this.esAdmin()) {
-          this.cargarReclamos();
-        }
-        this.loading = false;
-      },
-      error: (err) => {
-        this.showNotification('Error al enviar reclamo', 'error');
-        this.loading = false;
-      },
-    });
-  }
+enviarReclamo() {
+  this.loading = true;
+  
+  console.log('📤 Enviando reclamo:', this.nuevoReclamo);
+  
+  this.reclamosService.enviarReclamo(this.nuevoReclamo).subscribe({
+    next: (response) => {
+      console.log('✅ Respuesta del backend:', response);
+      this.showNotification('Reclamo enviado exitosamente', 'success');
+      this.nuevoReclamo = { ru: '', asunto: '', detalle: '' };
+      if (this.esAdmin()) {
+        this.cargarReclamos();
+      }
+      this.loading = false;
+    },
+    error: (err) => {
+      // ✅ VER EL ERROR REAL
+      console.error('❌ Error COMPLETO:', err);
+      console.error('❌ Status:', err.status);
+      console.error('❌ Mensaje:', err.error);
+      console.error('❌ Error text:', err.error?.text || err.message);
+      
+      // Mostrar el error real en el alert
+      this.showNotification('Error: ' + (err.error?.message || err.message || 'Error desconocido'), 'error');
+      this.loading = false;
+    },
+  });
+}
 
   private showNotification(message: string, type: string) {
     // Notificación simple sin dar pistas

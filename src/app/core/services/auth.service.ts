@@ -9,6 +9,16 @@ export interface LoginRequest {
   password: string;
 }
 
+export interface LoginResponse {
+  id: number;
+  username: string;
+  nombre_real: string;
+  rol: string;
+  esquema: string;
+  ru: string;
+  mensaje: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -16,6 +26,14 @@ export class AuthService {
   private apiUrl = `${environment.apiUrl}/api/v1/auth`;
 
   constructor(private http: HttpClient) {}
+
+  // Login para estudiantes (práctica aislada)
+  loginEstudiante(ru: string, password: string): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.apiUrl}/login-estudiante`, {
+      ru,
+      password,
+    });
+  }
 
   login(credentials: LoginRequest): Observable<Usuario> {
     // Vulnerable a SQL Injection - para fines educativos
@@ -28,15 +46,22 @@ export class AuthService {
   }
 
   logout(): void {
+    localStorage.removeItem('estudiante_practica');
     localStorage.removeItem('user');
+    window.location.href = '/';
   }
 
-  getCurrentUser(): Usuario | null {
-    const user = localStorage.getItem('user');
+  getCurrentUser(): any {
+    const user = localStorage.getItem('estudiante_practica');
     return user ? JSON.parse(user) : null;
   }
 
   isLoggedIn(): boolean {
     return this.getCurrentUser() !== null;
+  }
+
+  getEsquemaActual(): string {
+    const user = this.getCurrentUser();
+    return user ? user.esquema : 'public';
   }
 }

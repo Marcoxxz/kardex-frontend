@@ -13,7 +13,9 @@ export class ReclamosService {
   constructor(private http: HttpClient) {}
 
   enviarReclamo(reclamo: Reclamo): Observable<string> {
-    return this.http.post<string>(`${this.apiUrl}/enviar`, reclamo);
+    return this.http.post(`${this.apiUrl}/enviar`, reclamo, {
+      responseType: 'text',
+    });
   }
 
   listarReclamos(): Observable<Reclamo[]> {

@@ -100,7 +100,10 @@
                 {{ reclamo.fecha | date: "dd/MM/yyyy" }}</span
               >
             </div>
-            <div class="reclamo-detalle" [innerHTML]="reclamo.detalle"></div>
+            <div
+              class="reclamo-detalle"
+              [innerHTML]="getUnsafeHtml(reclamo.detalle)"
+            ></div>
           </div>
         </div>
       </div>

@@ -57,8 +57,9 @@ export class ReclamosComponent implements OnInit {
 
   enviarReclamo() {
     this.loading = true;
+
     this.reclamosService.enviarReclamo(this.nuevoReclamo).subscribe({
-      next: () => {
+      next: (response) => {
         this.showNotification('Reclamo enviado exitosamente', 'success');
         this.nuevoReclamo = { ru: '', asunto: '', detalle: '' };
         if (this.esAdmin()) {
@@ -67,7 +68,18 @@ export class ReclamosComponent implements OnInit {
         this.loading = false;
       },
       error: (err) => {
-        this.showNotification('Error al enviar reclamo', 'error');
+        // ✅ VER EL ERROR REAL
+        console.error('❌ Error COMPLETO:', err);
+        console.error('❌ Status:', err.status);
+        console.error('❌ Mensaje:', err.error);
+        console.error('❌ Error text:', err.error?.text || err.message);
+
+        // Mostrar el error real en el alert
+        this.showNotification(
+          'Error: ' +
+            (err.error?.message || err.message || 'Error desconocido'),
+          'error',
+        );
         this.loading = false;
       },
     });

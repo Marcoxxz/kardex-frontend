@@ -22,4 +22,8 @@ export class ReclamosService {
     // Vulnerable a XSS almacenado
     return this.http.get<Reclamo[]>(`${this.apiUrl}/listar`);
   }
+
+  listarTodosLosReclamosAdmin(): Observable<Reclamo[]> {
+    return this.http.get<Reclamo[]>(`${this.apiUrl}/listar-todos`);
+  }
 }

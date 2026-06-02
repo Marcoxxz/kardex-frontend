@@ -70,7 +70,7 @@
       </div>
 
       <!-- Lista de reclamos (solo visible para admin) -->
-      <div class="list-card" *ngIf="esAdmin()">
+      <div class="list-card" *ngIf="isAdminUser">
         <div class="card-header">
           <i class="fas fa-list header-icon"></i>
           <h3>Reclamos Recibidos</h3>

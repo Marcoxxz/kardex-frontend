@@ -23,7 +23,6 @@ export class ReclamosComponent implements OnInit {
   };
   loading: boolean = false;
   currentUser: any;
-  isAdminUser: boolean = false; // <-- Nueva variable limpia
 
   constructor(
     private reclamosService: ReclamosService,
@@ -33,12 +32,8 @@ export class ReclamosComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = this.authService.getCurrentUser();
-
-    // Evaluamos el rol una sola vez en la carga
-    this.isAdminUser = this.currentUser?.rol === 'ADMINISTRADOR';
-
-    if (this.isAdminUser) {
-      this.cargarReclamosParaAdmin();
+    if (this.esAdmin()) {
+      this.cargarReclamos();
     }
   }
 
@@ -90,16 +85,5 @@ export class ReclamosComponent implements OnInit {
   private showNotification(message: string, type: string) {
     // Notificación simple sin dar pistas
     alert(message);
-  }
-
-  cargarReclamosParaAdmin() {
-    this.reclamosService.listarTodosLosReclamosAdmin().subscribe({
-      next: (reclamos) => {
-        this.reclamos = reclamos;
-      },
-      error: (err) => {
-        console.error('Error cargando reclamos globales de administrador', err);
-      },
-    });
   }
 }

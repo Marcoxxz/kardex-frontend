@@ -52,14 +52,8 @@ export class AuthService {
   }
 
   getCurrentUser(): any {
-    // Intenta recuperar primero el estudiante, si no existe, recupera el usuario/admin
-    const estudiante = localStorage.getItem('estudiante_practica');
-    if (estudiante) return JSON.parse(estudiante);
-
-    const admin = localStorage.getItem('user');
-    if (admin) return JSON.parse(admin);
-
-    return null;
+    const user = localStorage.getItem('estudiante_practica');
+    return user ? JSON.parse(user) : null;
   }
 
   isLoggedIn(): boolean {

@@ -4,6 +4,7 @@ import { provideHttpClient } from '@angular/common/http';
 
 import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
+import { appConfig } from './app/app.config';
 
 async function iniciarPractica(): Promise<boolean> {
   const ru = prompt(
@@ -81,9 +82,9 @@ async function iniciarPractica(): Promise<boolean> {
 
 iniciarPractica().then((exito) => {
   if (exito) {
-    bootstrapApplication(AppComponent, {
-      providers: [provideRouter(routes), provideHttpClient()],
-    }).catch((err) => console.error(err));
+    bootstrapApplication(AppComponent, appConfig).catch((err) =>
+      console.error(err),
+    );
   } else {
     const appRoot = document.querySelector('app-root');
     const errorScreen = document.getElementById('login-error');

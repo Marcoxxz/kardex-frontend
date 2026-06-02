@@ -59,12 +59,12 @@ export class MateriasService {
   }
 
   // Desactivar materia (soft delete)
-  desactivarMateria(sigla: string): Observable<Materia> {
-    return this.http.patch<Materia>(`${this.apiUrl}/${sigla}/desactivar`, {});
+  desactivarMateria(sigla: string): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/${sigla}/desactivar`, {});
   }
 
   // Activar materia
-  activarMateria(sigla: string): Observable<Materia> {
-    return this.http.patch<Materia>(`${this.apiUrl}/${sigla}/activar`, {});
+  activarMateria(sigla: string): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/${sigla}/activar`, {});
   }
 }

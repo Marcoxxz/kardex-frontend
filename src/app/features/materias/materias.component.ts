@@ -201,11 +201,14 @@ export class MateriasComponent implements OnInit {
       : this.materiasService.activarMateria(materia.sigla);
 
     serviceCall.subscribe({
-      next: () => {
+      next: (resp) => {
+        console.log('RESPUESTA PATCH', resp);
+
         this.showNotification(`Materia ${action}ada`, 'success');
         this.cargarMaterias();
       },
       error: (err) => {
+        console.error('ERROR COMPLETO', err);
         this.showNotification(`Error al ${action} materia`, 'error');
       },
     });

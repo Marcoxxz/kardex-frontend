@@ -195,18 +195,19 @@ export class MateriasComponent implements OnInit {
   }
 
   toggleActivarMateria(materia: Materia) {
-    const action = materia.activo ? 'desactivar' : 'activar';
+    const action = materia.activo ? 'desactivada' : 'activada';
     const serviceCall = materia.activo
       ? this.materiasService.desactivarMateria(materia.sigla)
       : this.materiasService.activarMateria(materia.sigla);
 
     serviceCall.subscribe({
       next: () => {
-        this.showNotification(`Materia ${action}ada`, 'success');
+        this.showNotification(`Materia ${action}`, 'success');
         this.cargarMaterias();
       },
       error: (err) => {
-        this.showNotification(`Error al ${action} materia`, 'error');
+        const errorAction = materia.activo ? 'desactivar' : 'activar';
+        this.showNotification(`Error al ${errorAction} materia`, 'error');
       },
     });
   }

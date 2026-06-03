@@ -44,13 +44,15 @@ export class ReclamosComponent implements OnInit {
   cargarReclamos() {
     this.reclamosService.listarReclamos().subscribe({
       next: (reclamos) => {
+        console.log('RECLAMOS RECIBIDOS:', reclamos);
         this.reclamos = reclamos;
       },
       error: (err) => {
-        console.error('Error cargando reclamos');
+        console.error('ERROR RECLAMOS:', err);
       },
     });
   }
+  
   getUnsafeHtml(html: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }

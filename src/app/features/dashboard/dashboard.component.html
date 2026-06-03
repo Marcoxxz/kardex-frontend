@@ -9,7 +9,7 @@
       <div class="nav-menu">
         <div class="user-info">
           <i class="fas fa-user-circle"></i>
-          <span class="user-name">{{ user?.nombre }}</span>
+          <span class="user-name">{{ user?.nombreReal }}</span>
           <span class="user-role" [class.admin]="user?.rol === 'ADMINISTRADOR'">
             <i
               class="fas"
@@ -35,7 +35,7 @@
         <div>
           <h1>
             <i class="fas fa-hand-peace"></i> Bienvenido,
-            {{ user?.nombre }}
+            {{ user?.nombreReal }}
           </h1>
           <p>
             <i class="fas fa-calendar-alt"></i> Gestión Académica -

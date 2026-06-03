@@ -17,7 +17,9 @@
 
         <div class="card-body">
           <div class="form-group">
-            <label for="descripcion"><i class="fas fa-heading"></i> Título</label>
+            <label for="descripcion"
+              ><i class="fas fa-heading"></i> Título</label
+            >
             <input
               type="text"
               id="descripcion"
@@ -31,6 +33,27 @@
             <label for="codigo"
               ><i class="fas fa-shield-alt"></i> Código de Seguridad</label
             >
+
+            <div class="form-group">
+              <label for="estudiante">
+                <i class="fas fa-user-graduate"></i>
+                Estudiante
+              </label>
+
+              <select id="estudiante" class="form-control" [(ngModel)]="nuevoTramite.ru" title="Seleccione un estudiante">
+                <option value="">Seleccione un estudiante</option>
+
+                <option
+                  *ngFor="let estudiante of estudiantes"
+                  [value]="estudiante.ru"
+                >
+                  {{ estudiante.ru }} -
+                  {{ estudiante.nombres }}
+                  {{ estudiante.apellidos }}
+                </option>
+              </select>
+
+            </div>
             <input
               type="text"
               id="codigo"

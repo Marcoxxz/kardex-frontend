@@ -13,7 +13,10 @@ export class EstudiantesService {
   constructor(private http: HttpClient) {}
 
   buscarPorCi(ci: string): Observable<Estudiante[]> {
-    console.log('🔍 Búsqueda vulnerable SQL');
     return this.http.get<Estudiante[]>(`${this.apiUrl}/buscar?ci=${ci}`);
+  }
+
+  listarEstudiantes(): Observable<Estudiante[]> {
+    return this.http.get<Estudiante[]>(`${this.apiUrl}/listar`);
   }
 }

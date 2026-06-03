@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TramitesService } from '../../core/services/tramites.service';
 import { Tramite } from '../../core/models/tramite.model';
 import { Estudiante } from '../../core/models/estudiante.model';
+import { EstudiantesService } from '../../core/services/estudiantes.service';
 
 @Component({
   selector: 'app-tramites',
@@ -12,7 +13,7 @@ import { Estudiante } from '../../core/models/estudiante.model';
   templateUrl: './tramites.component.html',
   styleUrls: ['./tramites.component.css'],
 })
-export class TramitesComponent {
+export class TramitesComponent implements OnInit {
   nuevoTramite: Tramite = {
     descripcion: '',
     codigoSeguridad: '',
@@ -22,8 +23,27 @@ export class TramitesComponent {
   resultadosAuditoria: Estudiante[] = [];
   tramiteCreado: Tramite | null = null;
   loading: boolean = false;
+  estudiantes: Estudiante[] = [];
+  
+  ngOnInit(): void {
+    this.cargarEstudiantes();
+  }
 
-  constructor(private tramitesService: TramitesService) {}
+  constructor(
+    private tramitesService: TramitesService,
+    private estudiantesService: EstudiantesService,
+  ) {}
+
+  cargarEstudiantes() {
+    this.estudiantesService.listarEstudiantes().subscribe({
+      next: (data) => {
+        this.estudiantes = data;
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
+  }
 
   crearTramite() {
     this.loading = true;

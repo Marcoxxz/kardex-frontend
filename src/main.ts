@@ -8,20 +8,20 @@ import { appConfig } from './app/app.config';
 
 async function iniciarPractica(): Promise<boolean> {
   const ru = prompt(
-    '🔐 INICIO DE PRÁCTICA - KARDEX DIGITAL\n\n📚 Ingresa tu RU (Registro Universitario):\n\nEjemplo: 20210001',
+    'INICIO DE PRÁCTICA - SISTEMA KARDEX DIGITAL\n\nIngresa tu RU (Registro Universitario):',
   );
 
   if (!ru) {
-    alert('❌ Es necesario ingresar un RU para continuar');
+    alert('Es necesario ingresar un RU para continuar...');
     return false;
   }
 
   const password = prompt(
-    '🔐 INICIO DE PRÁCTICA - KARDEX DIGITAL\n\n🔑 Ingresa tu contraseña:\n\n(Contraseña por defecto: 123456)',
+    'INICIO DE PRÁCTICA - SISTEMA KARDEX DIGITAL\n\nIngresa tu contraseña:',
   );
 
   if (!password) {
-    alert('❌ Es necesario ingresar una contraseña');
+    alert('Es necesario ingresar una contraseña');
     return false;
   }
 
@@ -54,9 +54,9 @@ async function iniciarPractica(): Promise<boolean> {
       );
 
       alert(
-        `✅ ¡Bienvenido a tu entorno de prácticas!\n\n` +
-          `📚 Estudiante: ${data.nombre_real}\n` +
-          `🔬 Esquema aislado: ${data.esquema}\n\n` +
+        `¡Bienvenido aL entorno de prácticas!\n\n` +
+          `Estudiante: ${data.nombre_real}\n` +
+          `Esquema aislado: ${data.esquema}\n\n` +
           `⚠️ Recuerda: Estás en un entorno seguro. ¡Puedes practicar sin miedo!`,
       );
 
@@ -64,15 +64,14 @@ async function iniciarPractica(): Promise<boolean> {
     }
 
     alert(
-      `❌ Error de autenticación:\n\n` +
-        `${data.error || data.message || 'Credenciales incorrectas'}\n\n` +
-        `💡 Consejo: Usa la contraseña por defecto "123456"`,
+      `ERROR DE AUTENTICACIÓN:\n\n` +
+        `${data.error || data.message || 'Credenciales incorrectas'}`,
     );
 
     return false;
   } catch (error) {
     alert(
-      '❌ Error de conexión con el servidor\n\n' +
+      'Error de conexión con el servidor\n\n' +
         'Verifica tu conexión a internet',
     );
 

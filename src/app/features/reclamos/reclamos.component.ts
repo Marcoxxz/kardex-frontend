@@ -32,13 +32,14 @@ export class ReclamosComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = this.authService.getCurrentUser();
-    if (this.esAdmin()) {
-      this.cargarReclamos();
-    }
-    console.log(this.currentUser);
-    console.log(this.esAdmin());
-    console.log('Usuario actual:', this.currentUser);
-    console.log('Es admin:', this.esAdmin());
+    this.cargarReclamos();
+    // if (this.esAdmin()) {
+    //   this.cargarReclamos();
+    // }
+    // console.log(this.currentUser);
+    // console.log(this.esAdmin());
+    // console.log('Usuario actual:', this.currentUser);
+    // console.log('Es admin:', this.esAdmin());
   }
 
   esAdmin(): boolean {

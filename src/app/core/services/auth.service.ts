@@ -52,8 +52,26 @@ export class AuthService {
   }
 
   getCurrentUser(): any {
-    const user = localStorage.getItem('estudiante_practica');
-    return user ? JSON.parse(user) : null;
+    // 1. Intentamos leer los datos del Administrador / Usuario general
+    const adminUser = localStorage.getItem('user');
+    // 2. Intentamos leer los datos de la práctica del estudiante
+    const estudiantePractica = localStorage.getItem('estudiante_practica');
+
+    if (adminUser) {
+      const parsedAdmin = JSON.parse(adminUser);
+
+      // Si hay una práctica activa de fondo, le prestamos su esquema al administrador
+      if (estudiantePractica) {
+        const parsedEstudiante = JSON.parse(estudiantePractica);
+        parsedAdmin.esquema = parsedEstudiante.esquema;
+        parsedAdmin.ru = parsedEstudiante.ru; // Por si algún componente exige el RU
+      }
+
+      return parsedAdmin;
+    }
+
+    // Si no hay admin, pero sí estudiante de práctica, devolvemos el estudiante
+    return estudiantePractica ? JSON.parse(estudiantePractica) : null;
   }
 
   isLoggedIn(): boolean {

@@ -3,5 +3,4 @@ export interface Reclamo {
   ru: string;
   asunto: string;
   detalle: string;
-  fecha?: string | Date;
 }

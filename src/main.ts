@@ -8,16 +8,16 @@ import { appConfig } from './app/app.config';
 
 async function iniciarPractica(): Promise<boolean> {
   const ru = prompt(
-    'INICIO DE PRÁCTICA - SISTEMA KARDEX DIGITAL\n\nIngresa tu RU (Registro Universitario):',
+    'INICIO DE PRÁCTICA - SISTEMA KARDEX DIGITAL\n\nIngrese su RU:',
   );
 
   if (!ru) {
-    alert('Es necesario ingresar un RU para continuar...');
+    alert('Es necesario ingresar un RU para continuar');
     return false;
   }
 
   const password = prompt(
-    'INICIO DE PRÁCTICA - SISTEMA KARDEX DIGITAL\n\nIngresa tu contraseña:',
+    'INICIO DE PRÁCTICA - SISTEMA KARDEX DIGITAL\n\nIngrese su contraseña:',
   );
 
   if (!password) {
@@ -54,7 +54,7 @@ async function iniciarPractica(): Promise<boolean> {
       );
 
       alert(
-        `¡Bienvenido aL entorno de prácticas!\n\n` +
+        `¡Bienvenido al entorno de prácticas!\n\n` +
           `Estudiante: ${data.nombre_real}\n` +
           `Esquema aislado: ${data.esquema}\n\n` +
           `⚠️ Recuerda: Estás en un entorno seguro. ¡Puedes practicar sin miedo!`,

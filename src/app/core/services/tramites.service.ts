@@ -14,7 +14,9 @@ export class TramitesService {
   constructor(private http: HttpClient) {}
 
   crearTramite(tramite: Tramite): Observable<string> {
-    return this.http.post<string>(`${this.apiUrl}/crear`, tramite);
+    return this.http.post(`${this.apiUrl}/crear`, tramite, {
+      responseType: 'text',
+    });
   }
 
   auditarTramite(id: number): Observable<Estudiante[]> {

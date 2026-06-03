@@ -48,7 +48,7 @@ async function iniciarPractica(): Promise<boolean> {
         JSON.stringify({
           ru,
           esquema: data.esquema,
-          nombre: data.nombre_real,
+          nombre: data.nombreReal,
           token: 'practica_' + ru,
         }),
       );

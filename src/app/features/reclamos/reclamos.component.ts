@@ -47,9 +47,8 @@ export class ReclamosComponent implements OnInit {
   }
 
   cargarReclamos() {
-    this.reclamosService.listarTodosLosReclamosAdmin().subscribe({
+    this.reclamosService.listarReclamos().subscribe({
       next: (reclamos) => {
-        console.log('RECLAMOS RECIBIDOS:', reclamos);
         this.reclamos = reclamos;
       },
       error: (err) => {

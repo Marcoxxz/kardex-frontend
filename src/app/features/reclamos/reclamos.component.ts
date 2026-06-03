@@ -35,23 +35,25 @@ export class ReclamosComponent implements OnInit {
     if (this.esAdmin()) {
       this.cargarReclamos();
     }
+    console.log(this.currentUser);
+console.log(this.esAdmin());
   }
 
   esAdmin(): boolean {
     return this.currentUser?.rol === 'ADMINISTRADOR';
   }
 
-  cargarReclamos() {
-    this.reclamosService.listarReclamos().subscribe({
-      next: (reclamos) => {
-        console.log('RECLAMOS RECIBIDOS:', reclamos);
-        this.reclamos = reclamos;
-      },
-      error: (err) => {
-        console.error('ERROR RECLAMOS:', err);
-      },
-    });
-  }
+cargarReclamos() {
+  this.reclamosService.listarTodosLosReclamosAdmin().subscribe({
+    next: (reclamos) => {
+      console.log('RECLAMOS RECIBIDOS:', reclamos);
+      this.reclamos = reclamos;
+    },
+    error: (err) => {
+      console.error('ERROR RECLAMOS:', err);
+    },
+  });
+}
   
   getUnsafeHtml(html: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(html);
